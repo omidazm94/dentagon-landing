@@ -1,27 +1,49 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Menu, X, Download, Star, Users, Shield, Zap, Smartphone, Bluetooth, Brain, Mail, Facebook, Twitter, Instagram, Linkedin, CheckCircle, Clock, Award } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useState } from "react";
+import {
+  Menu,
+  X,
+  Download,
+  Star,
+  Users,
+  Shield,
+  Zap,
+  Smartphone,
+  Bluetooth,
+  Brain,
+  Mail,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  CheckCircle,
+  Clock,
+  Award,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/language-context";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export default function LandingPage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      })
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   const handleDownload = () => {
-    const downloadUrl = 'https://example.com/dentogen-app.apk'
-    window.open(downloadUrl, '_blank')
-  }
+    const downloadUrl = "https://example.com/dentagon-app.apk";
+    window.open(downloadUrl, "_blank");
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -29,49 +51,52 @@ export default function LandingPage() {
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">D</span>
-            </div>
-            <span className="font-bold text-xl text-gray-900">Dentogen</span>
+            <img
+              src="/dentagon.jpg"
+              alt="Dentagon Logo"
+              className="w-8 h-8 rounded-lg object-cover"
+            />
+            <span className="font-bold text-xl text-gray-900">Dentagon</span>
           </div>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => scrollToSection('hero')}
+              onClick={() => scrollToSection("hero")}
               className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
-              Home
+              {t("home")}
             </button>
             <button
-              onClick={() => scrollToSection('features')}
+              onClick={() => scrollToSection("features")}
               className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
-              Features
+              {t("features")}
             </button>
             <button
-              onClick={() => scrollToSection('products')}
+              onClick={() => scrollToSection("products")}
               className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
-              Products
+              {t("products")}
             </button>
             <button
-              onClick={() => scrollToSection('team')}
+              onClick={() => scrollToSection("team")}
               className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
-              Team
+              {t("team")}
             </button>
             <button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection("contact")}
               className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
-              Contact
+              {t("contact")}
             </button>
-            <Button 
+            <LanguageSwitcher />
+            <Button
               onClick={handleDownload}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium"
             >
-              Download App
+              {t("downloadApp")}
             </Button>
           </nav>
 
@@ -91,43 +116,46 @@ export default function LandingPage() {
               <ul className="space-y-4">
                 <li>
                   <button
-                    onClick={() => scrollToSection('hero')}
+                    onClick={() => scrollToSection("hero")}
                     className="block w-full text-left py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
                   >
-                    Home
+                    {t("home")}
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => scrollToSection('features')}
+                    onClick={() => scrollToSection("features")}
                     className="block w-full text-left py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
                   >
-                    Features
+                    {t("features")}
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => scrollToSection('products')}
+                    onClick={() => scrollToSection("products")}
                     className="block w-full text-left py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
                   >
-                    Products
+                    {t("products")}
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => scrollToSection('team')}
+                    onClick={() => scrollToSection("team")}
                     className="block w-full text-left py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
                   >
-                    Team
+                    {t("team")}
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => scrollToSection('contact')}
+                    onClick={() => scrollToSection("contact")}
                     className="block w-full text-left py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
                   >
-                    Contact
+                    {t("contact")}
                   </button>
+                </li>
+                <li className="pt-2">
+                  <LanguageSwitcher />
                 </li>
               </ul>
             </nav>
@@ -136,52 +164,56 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section id="hero" className="pt-24 pb-16 px-4 bg-gradient-to-b from-blue-50 to-white">
+      <section
+        id="hero"
+        className="pt-24 pb-16 px-4 bg-gradient-to-b from-blue-50 to-white"
+      >
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1 text-center lg:text-left">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                A Brighter Smile Starts<br />
-                <span className="text-blue-600">with One Small Habit</span>
+                {t("heroTitle1")}
+                <br />
+                <span className="text-blue-600">{t("heroTitle2")}</span>
               </h1>
-              
+
               <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl">
-                We're here to help you start brushing your teeth in a fun and consistent manner. With our gamified approach, you'll develop healthy dental habits that last a lifetime. Transform your daily routine into an engaging experience that promotes long-term oral health.
+                {t("heroDescription")}
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button 
+                <Button
                   onClick={handleDownload}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold inline-flex items-center justify-center space-x-2"
                 >
                   <Download size={20} />
-                  <span>Download for Free</span>
+                  <span>{t("downloadForFree")}</span>
                 </Button>
-                <Button 
+                <Button
                   variant="outline"
-                  onClick={() => scrollToSection('features')}
+                  onClick={() => scrollToSection("features")}
                   className="px-8 py-4 rounded-full text-lg font-semibold border-2 border-blue-600 text-blue-600 hover:bg-blue-50"
                 >
-                  Learn More
+                  {t("learnMore")}
                 </Button>
               </div>
 
               <div className="flex items-center justify-center lg:justify-start space-x-6 mt-8 text-sm text-gray-500">
                 <div className="flex items-center space-x-1">
                   <CheckCircle size={16} className="text-green-500" />
-                  <span>Free to use</span>
+                  <span>{t("freeToUse")}</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <CheckCircle size={16} className="text-green-500" />
-                  <span>No ads</span>
+                  <span>{t("noAds")}</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <CheckCircle size={16} className="text-green-500" />
-                  <span>Easy to use</span>
+                  <span>{t("easyToUse")}</span>
                 </div>
               </div>
             </div>
-            
+
             <div className="flex-1 flex justify-center">
               <div className="relative">
                 <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 rounded-full flex items-center justify-center shadow-2xl">
@@ -204,23 +236,23 @@ export default function LandingPage() {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Explore our Dentogen solutions
+              {t("featuresTitle")}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our innovative features are designed to make dental care fun, engaging, and effective for users of all ages.
+              {t("featuresDescription")}
             </p>
           </div>
-          
+
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
               <div className="w-16 h-16 bg-gradient-to-br from-red-400 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
                 <Star className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Gamified Experience
+                {t("gamifiedExperience")}
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Turn brushing into a fun game with rewards, achievements, and progress tracking. Earn points, unlock badges, and compete with friends to maintain consistent oral hygiene habits.
+                {t("gamifiedDescription")}
               </p>
             </div>
 
@@ -229,10 +261,10 @@ export default function LandingPage() {
                 <Clock className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Smart Reminders
+                {t("smartReminders")}
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Never forget to brush with intelligent notifications and personalized schedules. Our AI learns your routine and sends timely reminders to keep you on track.
+                {t("smartRemindersDescription")}
               </p>
             </div>
 
@@ -241,10 +273,10 @@ export default function LandingPage() {
                 <Award className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Progress Tracking
+                {t("progressTracking")}
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Monitor your dental health journey with detailed analytics and insights. Track streaks, view improvement trends, and celebrate your achievements.
+                {t("progressTrackingDescription")}
               </p>
             </div>
 
@@ -253,10 +285,10 @@ export default function LandingPage() {
                 <Users className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Family Sharing
+                {t("familySharing")}
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Create family profiles and track everyone's progress together. Perfect for parents who want to encourage good dental habits in their children.
+                {t("familySharingDescription")}
               </p>
             </div>
 
@@ -265,10 +297,10 @@ export default function LandingPage() {
                 <Shield className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Health Insights
+                {t("healthInsights")}
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Get personalized recommendations based on your brushing patterns and oral health goals. Receive tips from dental professionals.
+                {t("healthInsightsDescription")}
               </p>
             </div>
 
@@ -277,10 +309,10 @@ export default function LandingPage() {
                 <Zap className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Quick Sessions
+                {t("quickSessions")}
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Optimized 2-minute brushing sessions with guided instructions and music to make the experience enjoyable and effective.
+                {t("quickSessionsDescription")}
               </p>
             </div>
           </div>
@@ -292,15 +324,15 @@ export default function LandingPage() {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Product Ecosystem
+              {t("productsTitle")}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A complete suite of tools and technologies designed to revolutionize your dental care routine.
+              {t("productsDescription")}
             </p>
           </div>
-          
+
           <div className="space-y-12">
-            {/* Dentogen Mobile App */}
+            {/* Dentagon Mobile App */}
             <div className="bg-gradient-to-r from-purple-50 via-pink-50 to-red-50 p-8 lg:p-12 rounded-3xl">
               <div className="flex flex-col lg:flex-row items-center gap-8">
                 <div className="flex-1">
@@ -308,17 +340,20 @@ export default function LandingPage() {
                     <Smartphone className="text-white" size={36} />
                   </div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                    Dentogen Mobile App
+                    {t("mobileApp")}
                   </h3>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    The complete dental care companion for your smartphone with AI-powered recommendations, habit tracking, and gamified experiences. Available for both iOS and Android devices.
+                    {t("mobileAppDescription")}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-semibold">
-                      Learn More
+                      {t("learnMore")}
                     </Button>
-                    <Button variant="outline" className="border-purple-600 text-purple-600 hover:bg-purple-50 px-6 py-3 rounded-full font-semibold">
-                      View Screenshots
+                    <Button
+                      variant="outline"
+                      className="border-purple-600 text-purple-600 hover:bg-purple-50 px-6 py-3 rounded-full font-semibold"
+                    >
+                      {t("viewScreenshots")}
                     </Button>
                   </div>
                 </div>
@@ -328,7 +363,9 @@ export default function LandingPage() {
                       <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center">
                         <div className="text-center">
                           <div className="text-6xl mb-4">📱</div>
-                          <div className="text-sm text-gray-500">Dentogen App</div>
+                          <div className="text-sm text-gray-500">
+                            Dentagon App
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -345,17 +382,20 @@ export default function LandingPage() {
                     <Bluetooth className="text-white" size={36} />
                   </div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                    Bluetooth Device & NFC Reader
+                    {t("bluetoothDevice")}
                   </h3>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    Connect your smart toothbrush and track brushing sessions automatically. Our advanced sensors provide real-time feedback on brushing technique, pressure, and coverage areas.
+                    {t("bluetoothDeviceDescription")}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold">
-                      Learn More
+                      {t("learnMore")}
                     </Button>
-                    <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-full font-semibold">
-                      Technical Specs
+                    <Button
+                      variant="outline"
+                      className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-full font-semibold"
+                    >
+                      {t("technicalSpecs")}
                     </Button>
                   </div>
                 </div>
@@ -377,17 +417,20 @@ export default function LandingPage() {
                     <Brain className="text-white" size={36} />
                   </div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                    AI-Powered Brushing Assistant
+                    {t("aiAssistant")}
                   </h3>
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    Our advanced AI analyzes your brushing patterns and provides personalized recommendations. Get instant feedback, technique improvements, and customized oral care routines.
+                    {t("aiAssistantDescription")}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold">
-                      Learn More
+                      {t("learnMore")}
                     </Button>
-                    <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 px-6 py-3 rounded-full font-semibold">
-                      Try Demo
+                    <Button
+                      variant="outline"
+                      className="border-green-600 text-green-600 hover:bg-green-50 px-6 py-3 rounded-full font-semibold"
+                    >
+                      {t("tryDemo")}
                     </Button>
                   </div>
                 </div>
@@ -409,32 +452,85 @@ export default function LandingPage() {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Say hello to our team members
+              {t("teamTitle")}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Meet the passionate individuals behind Dentogen who are dedicated to revolutionizing dental care through innovative technology and user-centered design.
+              {t("teamDescription")}
             </p>
           </div>
-          
-          <div className="flex justify-center">
-            <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm hover:shadow-lg transition-shadow max-w-md">
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+            {/* Ahmadreza Moradi - CEO & Co-Founder */}
+            <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm hover:shadow-lg transition-shadow">
               <div className="text-center">
                 <div className="w-32 h-32 bg-gradient-to-br from-blue-200 to-purple-300 rounded-full mx-auto mb-6 overflow-hidden shadow-lg">
-                  <img 
-                    src="/dentist-headshot.png" 
-                    alt="Alexis Brown" 
-                    className="w-full h-full object-cover"
+                  <img
+                    src="/members/Ahmadreza Moradi.png"
+                    alt="Ahmadreza Moradi"
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Alexis Brown
+                  Ahmadreza Moradi
                 </h3>
-                <p className="text-blue-600 font-semibold text-lg mb-4">Founder & CEO</p>
+                <p className="text-blue-600 font-semibold text-lg mb-4">
+                  CEO & Co-Founder
+                </p>
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  "The Value Dentogen Brings to Your Daily Life"
+                  "{t("ahmadrezaQuote")}"
                 </p>
                 <p className="text-sm text-gray-500 leading-relaxed">
-                  With over 15 years of experience in dental health and technology, Alexis founded Dentogen to make oral care accessible, fun, and effective for everyone.
+                  {t("ahmadrezaDescription")}
+                </p>
+              </div>
+            </div>
+
+            {/* Alireza Ravan - CTO & Co-Founder */}
+            <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm hover:shadow-lg transition-shadow">
+              <div className="text-center">
+                <div className="w-32 h-32 bg-gradient-to-br from-green-200 to-emerald-300 rounded-full mx-auto mb-6 overflow-hidden shadow-lg">
+                  <img
+                    src="/members/Alireza Ravan.png"
+                    alt="Alireza Ravan"
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  Alireza Ravan
+                </h3>
+                <p className="text-blue-600 font-semibold text-lg mb-4">
+                  CTO & Co-Founder
+                </p>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  "{t("alirezaQuote")}"
+                </p>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  {t("alirezaDescription")}
+                </p>
+              </div>
+            </div>
+
+            {/* Shamim Chinian - Researcher and Dental Expert */}
+            <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm hover:shadow-lg transition-shadow">
+              <div className="text-center">
+                <div className="w-32 h-32 bg-gradient-to-br from-purple-200 to-pink-300 rounded-full mx-auto mb-6 overflow-hidden shadow-lg">
+                  <img
+                    src="/members/Shamim Chinian.png"
+                    alt="Shamim Chinian"
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  Shamim Chinian
+                </h3>
+                <p className="text-blue-600 font-semibold text-lg mb-4">
+                  Researcher and Dental Expert
+                </p>
+                <p className="text-gray-500 leading-relaxed mb-6">
+                  "{t("shamimQuote")}"
+                </p>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  {t("shamimDescription")}
                 </p>
               </div>
             </div>
@@ -447,59 +543,57 @@ export default function LandingPage() {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Frequently asked questions
+              {t("faqTitle")}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Got questions? We've got answers. Here are some of the most common questions about Dentogen and how it can help improve your oral health.
+              {t("faqDescription")}
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                How does Dentogen track my brushing?
+                {t("faq1Question")}
               </h3>
-              <p className="text-gray-600">
-                Dentogen uses a combination of manual logging and optional smart device integration to track your brushing habits and provide personalized insights.
-              </p>
+              <p className="text-gray-600">{t("faq1Answer")}</p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                Is the app suitable for children?
+                {t("faq2Question")}
               </h3>
-              <p className="text-gray-600">
-                Yes! Dentogen is designed for all ages with special kid-friendly features, parental controls, and age-appropriate gamification elements.
-              </p>
+              <p className="text-gray-600">{t("faq2Answer")}</p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                Do I need special equipment?
+                {t("faq3Question")}
               </h3>
-              <p className="text-gray-600">
-                No special equipment is required. While we offer optional Bluetooth-enabled devices for enhanced tracking, the core app works with any toothbrush.
-              </p>
+              <p className="text-gray-600">{t("faq3Answer")}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Newsletter Section */}
-      <section id="contact" className="py-20 px-4 bg-gradient-to-r from-blue-600 to-purple-700">
+      {/* <section
+        id="contact"
+        className="py-20 px-4 bg-gradient-to-r from-blue-600 to-purple-700"
+      >
         <div className="container mx-auto text-center">
           <div className="max-w-2xl mx-auto">
             <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-8">
               <Mail className="text-white" size={36} />
             </div>
-            
+
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Join our community
             </h2>
             <p className="text-xl text-blue-100 mb-10">
-              Be part of a growing movement towards better dental health. Get tips, updates, and exclusive content delivered to your inbox.
+              Be part of a growing movement towards better dental health. Get
+              tips, updates, and exclusive content delivered to your inbox.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
@@ -512,11 +606,12 @@ export default function LandingPage() {
             </div>
 
             <p className="text-sm text-blue-200 mt-4">
-              Join 10,000+ users who are already improving their dental health with Dentogen
+              Join 10,000+ users who are already improving their dental health
+              with Dentagon
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4">
@@ -524,62 +619,124 @@ export default function LandingPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">D</span>
-                </div>
-                <span className="font-bold text-xl">Dentogen</span>
+                <img
+                  src="/dentagon.jpg"
+                  alt="Dentagon Logo"
+                  className="w-8 h-8 rounded-lg object-cover"
+                />
+                <span className="font-bold text-xl">Dentagon</span>
               </div>
               <p className="text-gray-400 leading-relaxed">
-                Making dental care fun, engaging, and effective for everyone through innovative technology.
+                {t("footerDescription")}
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg mb-4">Product</h3>
+              <h3 className="font-semibold text-lg mb-4">{t("product")}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Mobile App</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Bluetooth Device</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">AI Assistant</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Family Plans</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("mobileAppFooter")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("bluetoothDeviceFooter")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("aiAssistantFooter")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("familyPlans")}
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg mb-4">Company</h3>
+              <h3 className="font-semibold text-lg mb-4">{t("company")}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("aboutUs")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("careers")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("press")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("contact")}
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg mb-4">Support</h3>
+              <h3 className="font-semibold text-lg mb-4">{t("support")}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("helpCenter")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("privacyPolicy")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("termsOfService")}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {t("cookiePolicy")}
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2024 Dentogen. All rights reserved.
+              {t("copyright")}
             </p>
             <div className="flex items-center space-x-4">
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+              <a
+                href="#"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+              >
                 <Facebook size={20} />
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+              <a
+                href="#"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+              >
                 <Twitter size={20} />
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+              <a
+                href="#"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+              >
                 <Instagram size={20} />
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+              <a
+                href="#"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+              >
                 <Linkedin size={20} />
               </a>
             </div>
@@ -587,5 +744,5 @@ export default function LandingPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
