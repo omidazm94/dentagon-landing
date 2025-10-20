@@ -149,7 +149,7 @@ const translations: Record<Language, Translations> = {
     mobileApp: "Dentagon Mobile App",
     mobileAppDescription:
       "The complete dental care companion for your smartphone with AI-powered recommendations, habit tracking, and gamified experiences. Available for both iOS and Android devices.",
-    bluetoothDevice: "Bluetooth Device & NFC Reader",
+    bluetoothDevice: "Bluetooth Device & NFC Holder",
     bluetoothDeviceDescription:
       "Connect your smart toothbrush and track brushing sessions automatically. Our advanced sensors provide real-time feedback on brushing technique, pressure, and covered areas.",
     aiAssistant: "AI-Powered Brushing Assistant",
@@ -205,7 +205,7 @@ const translations: Record<Language, Translations> = {
     privacyPolicy: "Privacy Policy",
     termsOfService: "Terms of Service",
     cookiePolicy: "Cookie Policy",
-    copyright: "© 2024 Dentagon. All rights reserved.",
+    copyright: "© 2025 Dentagon. All rights reserved.",
   },
   fr: {
     // Header
@@ -313,7 +313,7 @@ const translations: Record<Language, Translations> = {
     privacyPolicy: "Politique de Confidentialité",
     termsOfService: "Conditions d'Utilisation",
     cookiePolicy: "Politique des Cookies",
-    copyright: "© 2024 Dentagon. Tous droits réservés.",
+    copyright: "© 2025 Dentagon. Tous droits réservés.",
   },
 };
 

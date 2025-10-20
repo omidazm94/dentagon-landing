@@ -24,6 +24,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/language-context";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import GLBViewer from "@/components/glb-viewer";
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -92,12 +93,12 @@ export default function LandingPage() {
               {t("contact")}
             </button>
             <LanguageSwitcher />
-            <Button
+            {/* <Button
               onClick={handleDownload}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium"
             >
               {t("downloadApp")}
-            </Button>
+            </Button> */}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -181,7 +182,7 @@ export default function LandingPage() {
                 {t("heroDescription")}
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              {/* <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button
                   onClick={handleDownload}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold inline-flex items-center justify-center space-x-2"
@@ -196,7 +197,7 @@ export default function LandingPage() {
                 >
                   {t("learnMore")}
                 </Button>
-              </div>
+              </div> */}
 
               <div className="flex items-center justify-center lg:justify-start space-x-6 mt-8 text-sm text-gray-500">
                 <div className="flex items-center space-x-1">
@@ -216,14 +217,18 @@ export default function LandingPage() {
 
             <div className="flex-1 flex justify-center">
               <div className="relative">
-                <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 rounded-full flex items-center justify-center shadow-2xl">
-                  <div className="text-8xl lg:text-9xl animate-bounce">🦷</div>
-                </div>
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-2xl">✨</span>
-                </div>
-                <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-green-400 rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-xl">💎</span>
+                <div className="w-100 h-100 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
+                  <div className="w-full h-full">
+                    <GLBViewer
+                      modelPath="/animations/dentagon_toothbrush.glb"
+                      className="w-full h-full"
+                      autoRotate={true}
+                      enableZoom={true}
+                      enablePan={false}
+                      enableRotate={true}
+                      fov={5}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -345,7 +350,7 @@ export default function LandingPage() {
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     {t("mobileAppDescription")}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  {/* <div className="flex flex-col sm:flex-row gap-4">
                     <Button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-semibold">
                       {t("learnMore")}
                     </Button>
@@ -355,18 +360,17 @@ export default function LandingPage() {
                     >
                       {t("viewScreenshots")}
                     </Button>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="flex-1 flex justify-center">
                   <div className="relative">
                     <div className="w-64 h-80 bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
-                      <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="text-6xl mb-4">📱</div>
-                          <div className="text-sm text-gray-500">
-                            Dentagon App
-                          </div>
-                        </div>
+                      <div className="w-full h-full bg-white rounded-2xl overflow-hidden">
+                        <img
+                          src="/app_image.jpg"
+                          alt="Dentagon Mobile App"
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                     </div>
                   </div>
@@ -387,7 +391,7 @@ export default function LandingPage() {
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     {t("bluetoothDeviceDescription")}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  {/* <div className="flex flex-col sm:flex-row gap-4">
                     <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold">
                       {t("learnMore")}
                     </Button>
@@ -397,14 +401,26 @@ export default function LandingPage() {
                     >
                       {t("technicalSpecs")}
                     </Button>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <div className="relative">
+                  <div className="w-80 h-96 bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
+                    <div className="w-full h-full bg-white rounded-2xl overflow-hidden">
+                      <GLBViewer
+                        modelPath="/animations/dentagon.glb"
+                        className="w-full h-full"
+                        autoRotate={true}
+                        enableZoom={true}
+                        enablePan={false}
+                        enableRotate={true}
+                      />
+                    </div>
+                  </div>
+                  {/* <div className="relative">
                     <div className="w-48 h-48 bg-gradient-to-br from-blue-200 to-cyan-300 rounded-full flex items-center justify-center shadow-2xl">
                       <div className="text-8xl">🔗</div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -422,7 +438,7 @@ export default function LandingPage() {
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     {t("aiAssistantDescription")}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  {/* <div className="flex flex-col sm:flex-row gap-4">
                     <Button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold">
                       {t("learnMore")}
                     </Button>
@@ -432,13 +448,82 @@ export default function LandingPage() {
                     >
                       {t("tryDemo")}
                     </Button>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="flex-1 flex justify-center">
                   <div className="relative">
                     <div className="w-48 h-48 bg-gradient-to-br from-green-200 to-emerald-300 rounded-2xl flex items-center justify-center shadow-2xl">
                       <div className="text-8xl">🤖</div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* France Value Section */}
+      <section className="py-20 px-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+        <div className="container mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Dentagon's Value for France
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div className="flex flex-col lg:flex-row items-center gap-12">
+              <div className="flex-2 prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p className="mb-6">
+                  France is a country that takes health seriously, and oral
+                  health in particular is supported through strong national
+                  programs such as M'T Dents, le plan de prévention
+                  bucco-dentaire, and Générations sans carie. These initiatives
+                  show a real commitment to prevention, early education, and
+                  reducing inequalities in access to care.
+                </p>
+
+                <p className="mb-6">
+                  At the same time, studies show that France still faces
+                  challenges: for example, the average DMFT score in
+                  12-year-olds is higher than in countries like Germany, where
+                  prevention programs have already pushed oral health indicators
+                  further. Germany currently leads in dental health outcomes,
+                  but France has both the potential and the ambition to not only
+                  reach that level but to go even further.
+                </p>
+
+                <p className="mb-6">
+                  Dentagon can actively support this national vision. Our smart
+                  device and app motivate children and families to brush better,
+                  while the AI assistant provides tailored guidance that
+                  complements the goals of M'T Dents. Our data analysis tools
+                  can strengthen le plan de prévention bucco-dentaire by giving
+                  institutions real behavioral insights into brushing habits.
+                  And with its gamified approach and focus on children, Dentagon
+                  directly contributes to the objectives of Générations sans
+                  carie by making "zero cavities" a more realistic goal for the
+                  next generation.
+                </p>
+
+                <p className="text-lg font-semibold text-gray-900">
+                  For these reasons, France is the ideal place for us to develop
+                  Dentagon: it offers both a strong public health framework and
+                  a clear opportunity to accelerate progress, positioning France
+                  as a leader in oral health innovation.
+                </p>
+              </div>
+
+              <div className="flex-1 flex justify-center">
+                <div className="relative">
+                  <div className="w-60 h-60 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center shadow-2xl">
+                    <img
+                      src="/tooth.png"
+                      alt="Friendly tooth character with toothbrush and toothpaste"
+                      className="w-64 h-64 object-contain"
+                    />
                   </div>
                 </div>
               </div>
@@ -463,7 +548,7 @@ export default function LandingPage() {
             {/* Ahmadreza Moradi - CEO & Co-Founder */}
             <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm hover:shadow-lg transition-shadow">
               <div className="text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-blue-200 to-purple-300 rounded-full mx-auto mb-6 overflow-hidden shadow-lg">
+                <div className="w-48 h-48 bg-gradient-to-br from-blue-200 to-purple-300 rounded-lg mx-auto mb-6 overflow-hidden shadow-lg">
                   <img
                     src="/members/Ahmadreza Moradi.png"
                     alt="Ahmadreza Moradi"
@@ -479,16 +564,16 @@ export default function LandingPage() {
                 <p className="text-gray-600 leading-relaxed mb-6">
                   "{t("ahmadrezaQuote")}"
                 </p>
-                <p className="text-sm text-gray-500 leading-relaxed">
+                {/* <p className="text-sm text-gray-500 leading-relaxed">
                   {t("ahmadrezaDescription")}
-                </p>
+                </p> */}
               </div>
             </div>
 
             {/* Alireza Ravan - CTO & Co-Founder */}
             <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm hover:shadow-lg transition-shadow">
               <div className="text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-green-200 to-emerald-300 rounded-full mx-auto mb-6 overflow-hidden shadow-lg">
+                <div className="w-48 h-48 bg-gradient-to-br from-green-200 to-emerald-300 rounded-lg mx-auto mb-6 overflow-hidden shadow-lg">
                   <img
                     src="/members/Alireza Ravan.png"
                     alt="Alireza Ravan"
@@ -504,16 +589,16 @@ export default function LandingPage() {
                 <p className="text-gray-600 leading-relaxed mb-6">
                   "{t("alirezaQuote")}"
                 </p>
-                <p className="text-sm text-gray-500 leading-relaxed">
+                {/* <p className="text-sm text-gray-500 leading-relaxed">
                   {t("alirezaDescription")}
-                </p>
+                </p> */}
               </div>
             </div>
 
             {/* Shamim Chinian - Researcher and Dental Expert */}
             <div className="bg-white p-8 lg:p-12 rounded-3xl shadow-sm hover:shadow-lg transition-shadow">
               <div className="text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-purple-200 to-pink-300 rounded-full mx-auto mb-6 overflow-hidden shadow-lg">
+                <div className="w-48 h-48 bg-gradient-to-br from-purple-200 to-pink-300 rounded-lg mx-auto mb-6 overflow-hidden shadow-lg">
                   <img
                     src="/members/Shamim Chinian.png"
                     alt="Shamim Chinian"
@@ -528,9 +613,6 @@ export default function LandingPage() {
                 </p>
                 <p className="text-gray-500 leading-relaxed mb-6">
                   "{t("shamimQuote")}"
-                </p>
-                <p className="text-sm text-gray-500 leading-relaxed">
-                  {t("shamimDescription")}
                 </p>
               </div>
             </div>
