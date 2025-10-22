@@ -20,11 +20,20 @@ import {
   CheckCircle,
   Clock,
   Award,
+  FileText,
+  Youtube,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/language-context";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import GLBViewer from "@/components/glb-viewer";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,8 +51,13 @@ export default function LandingPage() {
   };
 
   const handleDownload = () => {
-    const downloadUrl = "https://example.com/dentagon-app.apk";
-    window.open(downloadUrl, "_blank");
+    const downloadUrl = "/dentagon.apk";
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.download = "dentagon.apk";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -68,17 +82,18 @@ export default function LandingPage() {
             >
               {t("home")}
             </button>
-            <button
-              onClick={() => scrollToSection("features")}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
-            >
-              {t("features")}
-            </button>
+
             <button
               onClick={() => scrollToSection("products")}
               className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
               {t("products")}
+            </button>
+            <button
+              onClick={() => scrollToSection("features")}
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            >
+              {t("features")}
             </button>
             <button
               onClick={() => scrollToSection("team")}
@@ -93,12 +108,12 @@ export default function LandingPage() {
               {t("contact")}
             </button>
             <LanguageSwitcher />
-            {/* <Button
+            <Button
               onClick={handleDownload}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium"
             >
               {t("downloadApp")}
-            </Button> */}
+            </Button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -172,7 +187,7 @@ export default function LandingPage() {
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1 text-center lg:text-left">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-3xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
                 {t("heroTitle1")}
                 <br />
                 <span className="text-blue-600">{t("heroTitle2")}</span>
@@ -182,13 +197,13 @@ export default function LandingPage() {
                 {t("heroDescription")}
               </p>
 
-              {/* <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button
                   onClick={handleDownload}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold inline-flex items-center justify-center space-x-2"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-4 rounded-full text-lg font-semibold inline-flex items-center justify-center"
                 >
-                  <Download size={20} />
-                  <span>{t("downloadForFree")}</span>
+                  <Download size={20} className="ml-2" />
+                  <span className="mr-2">{t("downloadForFree")}</span>
                 </Button>
                 <Button
                   variant="outline"
@@ -197,7 +212,7 @@ export default function LandingPage() {
                 >
                   {t("learnMore")}
                 </Button>
-              </div> */}
+              </div>
 
               <div className="flex items-center justify-center lg:justify-start space-x-6 mt-8 text-sm text-gray-500">
                 <div className="flex items-center space-x-1">
@@ -236,94 +251,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-20 px-4 bg-gray-50">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {t("featuresTitle")}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t("featuresDescription")}
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-400 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
-                <Star className="text-white" size={28} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t("gamifiedExperience")}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {t("gamifiedDescription")}
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mb-6">
-                <Clock className="text-white" size={28} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t("smartReminders")}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {t("smartRemindersDescription")}
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mb-6">
-                <Award className="text-white" size={28} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t("progressTracking")}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {t("progressTrackingDescription")}
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-2xl flex items-center justify-center mb-6">
-                <Users className="text-white" size={28} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t("familySharing")}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {t("familySharingDescription")}
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center mb-6">
-                <Shield className="text-white" size={28} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t("healthInsights")}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {t("healthInsightsDescription")}
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mb-6">
-                <Zap className="text-white" size={28} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {t("quickSessions")}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {t("quickSessionsDescription")}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Products Section */}
       <section id="products" className="py-20 px-4">
         <div className="container mx-auto">
@@ -340,27 +267,18 @@ export default function LandingPage() {
             {/* Dentagon Mobile App */}
             <div className="bg-gradient-to-r from-purple-50 via-pink-50 to-red-50 p-8 lg:p-12 rounded-3xl">
               <div className="flex flex-col lg:flex-row items-center gap-8">
-                <div className="flex-1">
-                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl flex items-center justify-center mb-6">
+                <div className="flex-1 flex gap-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl flex items-center justify-center flex-shrink-0">
                     <Smartphone className="text-white" size={36} />
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                    {t("mobileApp")}
-                  </h3>
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    {t("mobileAppDescription")}
-                  </p>
-                  {/* <div className="flex flex-col sm:flex-row gap-4">
-                    <Button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-semibold">
-                      {t("learnMore")}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="border-purple-600 text-purple-600 hover:bg-purple-50 px-6 py-3 rounded-full font-semibold"
-                    >
-                      {t("viewScreenshots")}
-                    </Button>
-                  </div> */}
+                  <div className="flex-1">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                      {t("mobileApp")}
+                    </h3>
+                    <p className="text-lg text-gray-600 leading-relaxed">
+                      {t("mobileAppDescription")}
+                    </p>
+                  </div>
                 </div>
                 <div className="flex-1 flex justify-center">
                   <div className="relative">
@@ -381,27 +299,27 @@ export default function LandingPage() {
             {/* Bluetooth Device */}
             <div className="bg-gradient-to-r from-blue-50 via-cyan-50 to-teal-50 p-8 lg:p-12 rounded-3xl">
               <div className="flex flex-col lg:flex-row-reverse items-center gap-8">
-                <div className="flex-1">
-                  <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-3xl flex items-center justify-center mb-6">
+                <div className="flex-1 flex gap-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-3xl flex items-center justify-center flex-shrink-0">
                     <Bluetooth className="text-white" size={36} />
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                    {t("bluetoothDevice")}
-                  </h3>
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    {t("bluetoothDeviceDescription")}
-                  </p>
-                  {/* <div className="flex flex-col sm:flex-row gap-4">
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold">
-                      {t("learnMore")}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-full font-semibold"
+                  <div className="flex-1">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                      {t("bluetoothDevice")}
+                    </h3>
+                    <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                      {t("bluetoothDeviceDescription")}
+                    </p>
+                    <a
+                      href="/Dentagon_Prototype_Design_Report.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition-colors"
                     >
-                      {t("technicalSpecs")}
-                    </Button>
-                  </div> */}
+                      <FileText size={20} />
+                      <span>View Prototype Design Report</span>
+                    </a>
+                  </div>
                 </div>
                 <div className="flex-1 flex justify-center">
                   <div className="w-80 h-96 bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl p-2 shadow-2xl">
@@ -416,11 +334,6 @@ export default function LandingPage() {
                       />
                     </div>
                   </div>
-                  {/* <div className="relative">
-                    <div className="w-48 h-48 bg-gradient-to-br from-blue-200 to-cyan-300 rounded-full flex items-center justify-center shadow-2xl">
-                      <div className="text-8xl">🔗</div>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -428,35 +341,153 @@ export default function LandingPage() {
             {/* AI Assistant */}
             <div className="bg-gradient-to-r from-green-50 via-emerald-50 to-teal-50 p-8 lg:p-12 rounded-3xl">
               <div className="flex flex-col lg:flex-row items-center gap-8">
-                <div className="flex-1">
-                  <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl flex items-center justify-center mb-6">
+                <div className="flex-1 flex gap-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl flex items-center justify-center flex-shrink-0">
                     <Brain className="text-white" size={36} />
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                    {t("aiAssistant")}
-                  </h3>
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    {t("aiAssistantDescription")}
-                  </p>
-                  {/* <div className="flex flex-col sm:flex-row gap-4">
-                    <Button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold">
-                      {t("learnMore")}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="border-green-600 text-green-600 hover:bg-green-50 px-6 py-3 rounded-full font-semibold"
-                    >
-                      {t("tryDemo")}
-                    </Button>
-                  </div> */}
+                  <div className="flex-1">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                      {t("aiAssistant")}
+                    </h3>
+                    <p className="text-lg text-gray-600 leading-relaxed">
+                      {t("aiAssistantDescription")}
+                    </p>
+                  </div>
                 </div>
                 <div className="flex-1 flex justify-center">
                   <div className="relative">
-                    <div className="w-48 h-48 bg-gradient-to-br from-green-200 to-emerald-300 rounded-2xl flex items-center justify-center shadow-2xl">
-                      <div className="text-8xl">🤖</div>
+                    <div className="w-full max-w-2xl bg-gradient-to-br from-green-200 to-emerald-300 rounded-2xl overflow-hidden shadow-2xl p-2">
+                      <video
+                        src="/dentagon_bot.mp4"
+                        controls
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-auto rounded-xl"
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 px-4 bg-gray-50">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {t("featuresTitle")}
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              {t("featuresDescription")}
+            </p>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-8 items-stretch">
+            {/* Features Grid */}
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
+              <div className="bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow flex gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-red-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Star className="text-white" size={20} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base font-bold text-gray-900 mb-1">
+                    {t("gamifiedExperience")}
+                  </h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Turn brushing into a fun game with rewards and achievements.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow flex gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Clock className="text-white" size={20} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base font-bold text-gray-900 mb-1">
+                    {t("smartReminders")}
+                  </h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Never forget to brush with intelligent notifications.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow flex gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Award className="text-white" size={20} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base font-bold text-gray-900 mb-1">
+                    {t("progressTracking")}
+                  </h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Monitor your dental health journey with detailed analytics.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow flex gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Users className="text-white" size={20} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base font-bold text-gray-900 mb-1">
+                    {t("familySharing")}
+                  </h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Create family profiles and track everyone's progress
+                    together.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow flex gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Shield className="text-white" size={20} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base font-bold text-gray-900 mb-1">
+                    {t("healthInsights")}
+                  </h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Get personalized recommendations based on your patterns.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow flex gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Zap className="text-white" size={20} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base font-bold text-gray-900 mb-1">
+                    {t("quickSessions")}
+                  </h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Optimized 2 minute sessions with guided instructions.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Video */}
+            <div className="flex-1 lg:sticky lg:top-24 self-start">
+              <div className="bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 rounded-2xl overflow-hidden shadow-2xl p-2">
+                <video
+                  src="/dentagon_introduction.mp4"
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-auto rounded-xl"
+                />
               </div>
             </div>
           </div>
@@ -469,50 +500,21 @@ export default function LandingPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Dentagon's Value for France
+                {t("franceValueTitle")}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
             </div>
 
             <div className="flex flex-col lg:flex-row items-center gap-12">
               <div className="flex-2 prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                <p className="mb-6">
-                  France is a country that takes health seriously, and oral
-                  health in particular is supported through strong national
-                  programs such as M'T Dents, le plan de prévention
-                  bucco-dentaire, and Générations sans carie. These initiatives
-                  show a real commitment to prevention, early education, and
-                  reducing inequalities in access to care.
-                </p>
+                <p className="mb-6">{t("franceValueParagraph1")}</p>
 
-                <p className="mb-6">
-                  At the same time, studies show that France still faces
-                  challenges: for example, the average DMFT score in
-                  12-year-olds is higher than in countries like Germany, where
-                  prevention programs have already pushed oral health indicators
-                  further. Germany currently leads in dental health outcomes,
-                  but France has both the potential and the ambition to not only
-                  reach that level but to go even further.
-                </p>
+                <p className="mb-6">{t("franceValueParagraph2")}</p>
 
-                <p className="mb-6">
-                  Dentagon can actively support this national vision. Our smart
-                  device and app motivate children and families to brush better,
-                  while the AI assistant provides tailored guidance that
-                  complements the goals of M'T Dents. Our data analysis tools
-                  can strengthen le plan de prévention bucco-dentaire by giving
-                  institutions real behavioral insights into brushing habits.
-                  And with its gamified approach and focus on children, Dentagon
-                  directly contributes to the objectives of Générations sans
-                  carie by making "zero cavities" a more realistic goal for the
-                  next generation.
-                </p>
+                <p className="mb-6">{t("franceValueParagraph3")}</p>
 
                 <p className="text-lg font-semibold text-gray-900">
-                  For these reasons, France is the ideal place for us to develop
-                  Dentagon: it offers both a strong public health framework and
-                  a clear opportunity to accelerate progress, positioning France
-                  as a leader in oral health innovation.
+                  {t("franceValueParagraph4")}
                 </p>
               </div>
 
@@ -552,7 +554,7 @@ export default function LandingPage() {
                   <img
                     src="/members/Ahmadreza Moradi.png"
                     alt="Ahmadreza Moradi"
-                    className="w-full h-full object-cover object-center"
+                    className="w-full object-cover object-center"
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
@@ -577,7 +579,7 @@ export default function LandingPage() {
                   <img
                     src="/members/Alireza Ravan.png"
                     alt="Alireza Ravan"
-                    className="w-full h-full object-cover object-center"
+                    className="w-full object-cover object-center"
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
@@ -602,7 +604,7 @@ export default function LandingPage() {
                   <img
                     src="/members/Shamim Chinian.png"
                     alt="Shamim Chinian"
-                    className="w-full h-full object-cover object-center"
+                    className="w-full object-cover object-center"
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
@@ -616,6 +618,104 @@ export default function LandingPage() {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* Working Images Carousel */}
+          <div className="mt-16 max-w-6xl mx-auto">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {[1, 2, 3, 4, 5].map((index) => (
+                  <CarouselItem
+                    key={index}
+                    className="pl-4 md:basis-1/2 lg:basis-1/3"
+                  >
+                    <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                      <img
+                        src={`/working-${index}.jpg`}
+                        alt={`Working ${index}`}
+                        className="w-full h-64 object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </Carousel>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Partners
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Working together with leading organizations to drive innovation in
+              dental health
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
+            {/* Schoolab */}
+            <a
+              href="https://www.theschoolab.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col items-center justify-center group"
+            >
+              <div className="w-full h-32 flex items-center justify-center mb-4">
+                <div className="text-3xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+                  Schoolab
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 text-center">
+                Innovation Studio
+              </p>
+            </a>
+
+            {/* La French Tech */}
+            <a
+              href="https://lafrenchtech.gouv.fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col items-center justify-center group"
+            >
+              <div className="w-full h-32 flex items-center justify-center mb-4">
+                <div className="text-3xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+                  La French Tech
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 text-center">
+                French Tech Ecosystem
+              </p>
+            </a>
+
+            {/* Remolab */}
+            <a
+              href="https://remolab.fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col items-center justify-center group"
+            >
+              <div className="w-full h-32 flex items-center justify-center mb-4">
+                <div className="text-3xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+                  Remolab
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 text-center">
+                AI Startup Studio
+              </p>
+            </a>
           </div>
         </div>
       </section>
@@ -698,129 +798,56 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4">
         <div className="container mx-auto">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
+          <div className="max-w-4xl mx-auto">
+            {/* Dentagon Info */}
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center space-x-2 mb-4">
                 <img
                   src="/dentagon.jpg"
                   alt="Dentagon Logo"
-                  className="w-8 h-8 rounded-lg object-cover"
+                  className="w-10 h-10 rounded-lg object-cover"
                 />
-                <span className="font-bold text-xl">Dentagon</span>
+                <span className="font-bold text-2xl">Dentagon</span>
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-400 leading-relaxed max-w-2xl mx-auto">
                 {t("footerDescription")}
               </p>
             </div>
 
-            <div>
-              <h3 className="font-semibold text-lg mb-4">{t("product")}</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("mobileAppFooter")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("bluetoothDeviceFooter")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("aiAssistantFooter")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("familyPlans")}
-                  </a>
-                </li>
-              </ul>
+            {/* Social Links */}
+            <div className="flex items-center justify-center space-x-6 mb-8">
+              <a
+                href="https://www.linkedin.com/company/dentagonco/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={24} />
+              </a>
+              <a
+                href="https://www.instagram.com/dentagonco"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={24} />
+              </a>
+              <a
+                href="https://youtube.com/@dentagonco"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                aria-label="YouTube"
+              >
+                <Youtube size={24} />
+              </a>
             </div>
 
-            <div>
-              <h3 className="font-semibold text-lg mb-4">{t("company")}</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("aboutUs")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("careers")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("press")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("contact")}
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-lg mb-4">{t("support")}</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("helpCenter")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("privacyPolicy")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("termsOfService")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {t("cookiePolicy")}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              {t("copyright")}
-            </p>
-            <div className="flex items-center space-x-4">
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
-              >
-                <Facebook size={20} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
-              >
-                <Twitter size={20} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
-              >
-                <Linkedin size={20} />
-              </a>
+            {/* Copyright */}
+            <div className="border-t border-gray-800 pt-6 text-center">
+              <p className="text-gray-400 text-sm">{t("copyright")}</p>
             </div>
           </div>
         </div>

@@ -54,7 +54,6 @@ export interface Translations {
   bluetoothDeviceDescription: string;
   aiAssistant: string;
   aiAssistantDescription: string;
-  learnMore: string;
   viewScreenshots: string;
   technicalSpecs: string;
   tryDemo: string;
@@ -78,6 +77,13 @@ export interface Translations {
   faq2Answer: string;
   faq3Question: string;
   faq3Answer: string;
+
+  // France Value Section
+  franceValueTitle: string;
+  franceValueParagraph1: string;
+  franceValueParagraph2: string;
+  franceValueParagraph3: string;
+  franceValueParagraph4: string;
 
   // Footer
   footerDescription: string;
@@ -155,7 +161,6 @@ const translations: Record<Language, Translations> = {
     aiAssistant: "AI-Powered Brushing Assistant",
     aiAssistantDescription:
       "Our advanced AI dental assistant provides personalized guidance on your oral health. It answers your questions and analyzes dental radiographs to detect potential issues, offers dietary tips for better oral health, and analyzes your brushing habits to provide real-time feedback.",
-    learnMore: "Learn More",
     viewScreenshots: "View Screenshots",
     technicalSpecs: "Technical Specs",
     tryDemo: "Try Demo",
@@ -187,6 +192,17 @@ const translations: Record<Language, Translations> = {
     faq3Question: "Do I need special equipment?",
     faq3Answer:
       "No special equipment is required. While we offer optional Bluetooth-enabled devices for enhanced tracking, the core app works with any toothbrush.",
+
+    // France Value Section
+    franceValueTitle: "Dentagon's Value for France",
+    franceValueParagraph1:
+      "France is a country that takes health seriously, and oral health in particular is supported through strong national programs such as M'T Dents, le plan de prévention bucco-dentaire, and Générations sans carie. These initiatives show a real commitment to prevention, early education, and reducing inequalities in access to care.",
+    franceValueParagraph2:
+      "At the same time, studies show that France still faces challenges: for example, the average DMFT score in 12-year-olds is higher than in countries like Germany, where prevention programs have already pushed oral health indicators further. Germany currently leads in dental health outcomes, but France has both the potential and the ambition to not only reach that level but to go even further.",
+    franceValueParagraph3:
+      'Dentagon can actively support this national vision. Our smart device and app motivate children and families to brush better, while the AI assistant provides tailored guidance that complements the goals of M\'T Dents. Our data analysis tools can strengthen le plan de prévention bucco-dentaire by giving institutions real behavioral insights into brushing habits. And with its gamified approach and focus on children, Dentagon directly contributes to the objectives of Générations sans carie by making "zero cavities" a more realistic goal for the next generation.',
+    franceValueParagraph4:
+      "For these reasons, France is the ideal place for us to develop Dentagon: it offers both a strong public health framework and a clear opportunity to accelerate progress, positioning France as a leader in oral health innovation.",
 
     // Footer
     footerDescription:
@@ -263,7 +279,6 @@ const translations: Record<Language, Translations> = {
     aiAssistant: "Assistant de Brossage Alimenté par l'IA",
     aiAssistantDescription:
       "Notre assistant dentaire IA avancé fournit des conseils personnalisés sur votre santé bucco-dentaire. Il répond à vos questions et analyse les radiographies dentaires pour détecter les problèmes potentiels, offre des conseils diététiques pour une meilleure santé bucco-dentaire, et analyse vos habitudes de brossage pour fournir un retour en temps réel.",
-    learnMore: "En Savoir Plus",
     viewScreenshots: "Voir les Captures d'Écran",
     technicalSpecs: "Spécifications Techniques",
     tryDemo: "Essayer la Démo",
@@ -295,6 +310,17 @@ const translations: Record<Language, Translations> = {
     faq3Question: "Ai-je besoin d'équipement spécial ?",
     faq3Answer:
       "Aucun équipement spécial n'est requis. Bien que nous offrions des appareils compatibles Bluetooth optionnels pour un suivi amélioré, l'application principale fonctionne avec n'importe quelle brosse à dents.",
+
+    // France Value Section
+    franceValueTitle: "La Valeur de Dentagon pour la France",
+    franceValueParagraph1:
+      "La France est un pays qui prend la santé au sérieux, et la santé bucco-dentaire en particulier est soutenue par de solides programmes nationaux tels que M'T Dents, le plan de prévention bucco-dentaire, et Générations sans carie. Ces initiatives témoignent d'un réel engagement en faveur de la prévention, de l'éducation précoce et de la réduction des inégalités d'accès aux soins.",
+    franceValueParagraph2:
+      "Dans le même temps, les études montrent que la France fait encore face à des défis : par exemple, le score CAOD moyen chez les enfants de 12 ans est plus élevé que dans des pays comme l'Allemagne, où les programmes de prévention ont déjà fait progresser davantage les indicateurs de santé bucco-dentaire. L'Allemagne est actuellement en tête en matière de résultats en santé dentaire, mais la France a à la fois le potentiel et l'ambition non seulement d'atteindre ce niveau, mais d'aller encore plus loin.",
+    franceValueParagraph3:
+      "Dentagon peut soutenir activement cette vision nationale. Notre appareil intelligent et notre application motivent les enfants et les familles à mieux se brosser les dents, tandis que l'assistant IA fournit des conseils adaptés qui complètent les objectifs de M'T Dents. Nos outils d'analyse de données peuvent renforcer le plan de prévention bucco-dentaire en fournissant aux institutions de véritables insights comportementaux sur les habitudes de brossage. Et avec son approche gamifiée et son accent sur les enfants, Dentagon contribue directement aux objectifs de Générations sans carie en rendant « zéro carie » un objectif plus réaliste pour la prochaine génération.",
+    franceValueParagraph4:
+      "Pour ces raisons, la France est l'endroit idéal pour développer Dentagon : elle offre à la fois un cadre de santé publique solide et une opportunité claire d'accélérer les progrès, positionnant la France comme leader en matière d'innovation en santé bucco-dentaire.",
 
     // Footer
     footerDescription:
